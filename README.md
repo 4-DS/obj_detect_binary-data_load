@@ -1,13 +1,22 @@
 # Binary CV-Pipeline
 
-A CV or ML Pipeline is a sequence of steps that are performed to process data and train a machine learning model.    
-The main purpose of the CV&ML Pipeline is to automate and standardize the data processing and model training process. Pipeline includes various stages such as data preprocessing, feature extraction, model training, performance evaluation, etc. At the same time, each step in the pipeline can be configured and optimized independently of the others, which makes the pipeline flexible and scalable. This allows you to effectively manage the entire process - automate and standardize the process of data processing and model training. It also contributes to the repeatability and reproducibility of results, which is an important aspect in machine learning.
+As part of the Binary CV Pipeline scenario, we use the SinaraML Framework to create a complete model development cycle, starting with preparing data for model training and ending with deploying the trained model in a production environment.      
+Binary CV Pipeline scenario involves a set of sequential steps, each responsible for its own functionality. This pipeline is divided into the following steps:      
+- data loading (data_load) 
+- data preparation (data_prep) 
+- training model (model_train) 
+- packing model (model_pack) 
+- evaluate model (model_eval) 
+- testing model (model_test).      
 
-The Binary CV Pipeline is a scenario in which it is required to transfer the model trained in the PyTorch framework in its original form. In this example, the YOLOX_S model from mmdetection is further trained on a part of the COCO dataset validation sample.   
+Next, the functionality of each of the Binary CV Pipeline components will be described in more detail.  
 
-This scenario uses the mmdetection framework, which provides an implementation of various computer vision algorithms, including YOLOX_S. The original YOLOX_S model has already been trained on the full COCO dataset, however, in order to further improve its performance and adapt to specific requirements, additional training is being conducted on a part of the COCO validation sample.    
+Note that the Binary CV Pipeline assumes, in the first place, the transfer of the message "as is". After training the model, we use SinaraML to package the trained model and related files into BentoArchive. Where, BentoArchive is an archive format that allows you to save the model and all the necessary files together so that they can be easily transferred and deployed in another environment.    
+Then we can containerize BentoArchive in Docker Image using SinaraML. This makes it easy to deliver the model to the product environment and then extract the artifacts - inference files of the trained model for subsequent launch of the inference.
+It is also worth noting that transferring the model "as is" to the production environment using SinaraML has several advantages:
+First, it guarantees the preservation of all parameters and weights of the model. Secondly, it provides simplicity and convenience in deploying the model, since the entire process is automated and does not require additional actions.    
 
-To retrain the model, a part of the COCO validation sample is used, which is a subset of the data from the full dataset. This reduces the amount of data and speeds up the learning process. As a result of further training, the model will be better adapted to specific tasks and data, which will lead to increased accuracy and performance.  
+We also mention that retrain the model, a part of the COCO validation sample is used, which is a subset of the data from the full dataset. This reduces the amount of data and speeds up the learning process. As a result of further training, the model will be better adapted to specific tasks and data, which will lead to increased accuracy and performance.  
 
 <div align="center">
   <img src="imgs/Structura_CV_Pipeline.drawio.png" width="500"/>
@@ -79,7 +88,6 @@ Inference files from BentoArchive (obtained from the previous step CV Pipeline -
 Model Quality Report
 _____________________________________________
 ## **Model_test**
-
 At this stage, CV Pipeline Model_Test is testing the packaged BentoArchive, which contains inference files and other necessary artifacts.
 It may contain several tests:
 1. Comparison of artifacts before and after BentoArchive packaging by hash
@@ -89,3 +97,8 @@ It may contain several tests:
 - Input:
 Inference files from step  CV Pipeline - Model_Train)
 Inference files from BentoArchive (obtained from the previous step CV Pipeline - Model_Pack)    
+_____________________________________________
+## **Containerize and extract Artifacts from model image**
+You can get acquainted with the functionality by following the links:     
+<a id="blob-path" href="https://github.com/4-DS/sinara-tutorials/wiki/Getting-started-with-SinaraML-CV#model-image-build">Model Image build</a>     
+<a id="blob-path" href="https://github.com/4-DS/sinara-tutorials/wiki/Getting-started-with-SinaraML-CV#extract-artifacts-from-model-image">Extract Artifacts from model image</a
