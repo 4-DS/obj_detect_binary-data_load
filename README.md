@@ -64,9 +64,9 @@ At this stage of CV Pipeline Model_Pack the following happens:
 After converting the model, the model weights and all necessary artifacts (for example, the test image, the predicates of the test image) are packaged in bentoservice. Packaging in bentoservice allows you to create a containerized application that can be easily deployed and used for inference (prediction) on new data.    
 ### Interface (input, output):
 - Input:
-Model (obtained from the previous step CV Pipeline - Model_Train)
+Inference files (obtained from the previous step CV Pipeline - Model_Train)
 - Output:
-The BentoService model
+BentoArchive
 _____________________________________________
 ## **Model_eval**
 ### Component logic:
@@ -74,8 +74,18 @@ This stage of the CV Pipeline Model_Eval provides testing of the model, evaluati
 ### Interface (input, output):
 - Input:
 Test dataset (obtained from the CV Pipeline - Data_Prep step)    
-The model in Bertoservice (obtained from the previous step CV Pipeline - Model_Pack)    
+Inference files from BentoArchive (obtained from the previous step CV Pipeline - Model_Pack)    
 - Output:
 Model Quality Report
 _____________________________________________
+## **Model_test**
 
+At this stage, CV Pipeline Model_Test is testing the packaged BentoArchive, which contains inference files and other necessary artifacts.
+It may contain several tests:
+1. Comparison of artifacts before and after BentoArchive packaging by hash
+2. Comparison of the inference results on the test image through the trained model before and after packaging in BentoArchive
+
+### Interface (input, output):
+- Input:
+Inference files from step  CV Pipeline - Model_Train)
+Inference files from BentoArchive (obtained from the previous step CV Pipeline - Model_Pack)    
