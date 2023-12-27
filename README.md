@@ -1,4 +1,4 @@
-# Binary CV-Pipeline [RU](README_RU.md)
+# Binary CV-Pipeline
 
 A CV or ML Pipeline is a sequence of steps that are performed to process data and train a machine learning model.    
 The main purpose of the CV&ML Pipeline is to automate and standardize the data processing and model training process. Pipeline includes various stages such as data preprocessing, feature extraction, model training, performance evaluation, etc. At the same time, each step in the pipeline can be configured and optimized independently of the others, which makes the pipeline flexible and scalable. This allows you to effectively manage the entire process - automate and standardize the process of data processing and model training. It also contributes to the repeatability and reproducibility of results, which is an important aspect in machine learning.
@@ -33,7 +33,7 @@ Normalized data: with the correct structure for storage in the repository
 _____________________________________________
 ## **Data_prep**
 ### Component logic:
-At the CV Pipeline Data_Prep stage, the data is carefully analyzed and processed to ensure its quality and suitability for future use. The following steps are performed in this process:    
+At the CV Pipeline Data_Prep stage, the data is carefully analyzed and processed to ensure its quality and suitability for future use. This process does the following::    
 1. Validation: The dataset is checked for errors or inconsistencies. For example, it checks whether there are negative coordinates or omissions in the markup. If such problems are found, they are fixed or deleted.    
 2. Markup conversion: If the data markup requires changes or additions, it is converted accordingly. For example, you may need to reclassify objects or add new labels.    
 3. Separation of samples: The data set is divided into separate subsets: training, validation and testing datasets. The training set is used to train the model, the validation set is used to set up hyperparameters and evaluate the performance of the model during training, and the test set is used for the final evaluation of the model after training.     
@@ -57,7 +57,7 @@ A model in the Pytorch format (weights from the last epoch of learning and with 
 _____________________________________________
 ## **Model_pack**
 ### Component logic:
-At the CV Pipeline Model_Pack stage, the following steps occur:    
+At this stage of CV Pipeline Model_Pack the following happens:    
 1. Model conversion    
 - The model trained at the previous stage of the CV-Pipeline Model_Train is converted to a format corresponding to certain scenarios. For example, if the CV-Pipeline REST script is selected, the model can be converted to ONIX format, which provides the ability to deploy the model as a REST service. In the case of the Binary CV-Pipeline scenario, the model can be transmitted in the PyTorch format or another format in which it was trained.    
 2. Packaging in bertoservice    
@@ -82,8 +82,8 @@ _____________________________________________
 # Step CV-Pipeline: data_load
 
 This component of the CV (computer vision) pipeline is responsible for loading data from various sources. This component ensures the receipt and preparation of data for further processing and analysis.
-Includes the following steps:
-- Data Source Selection: This step involves selecting the source from which the data needs to be loaded.
+Includes the following stages:
+- Data Source Selection: This stage involves selecting the source from which the data needs to be loaded.
 Sources can be image or video files.
 - Receiving Data: Once a source is selected, operations are performed to retrieve data from the selected source.
 For example, for image or video files, this could be an operation of copying files from disk or loading a dataset from an external source.
@@ -95,30 +95,3 @@ To launch and run cv-pipeline faster, we use the validation part of the dataset 
 http://images.cocodataset.org/zips/val2017.zip
 and annotations to them http://images.cocodataset.org/annotations/annotations_trainval2017.zip          
    
-The output of this step CV-Pipeline is two external storage urls
-- **coco_datasets_images**     
-images of the downloaded dataset
-- **coco_datasets_annotations**    
-annotation files of the downloaded dataset
-- **yolox_pth_pretrain_weights**
-pretrain weights
-
-## How to run a step CV-Pipeline: data_load
-
-### Create a directory for the project (or use an existing one)
-```
-mkdir obj_detect_binary
-cd obj_detect_binary
-```  
-
-### clone the repository: data_load
-```
-git clone --recurse-submodules https://github.com/4-DS/obj_detect_binary-data_load.git {dir_for_data_load}
-cd {dir_for_data_load}
-```  
-
-### run step CV-Pipeline:data_load in dev mode and then in prod mode
-```
-python step.dev.py
-python step.prod.py
-``` 
