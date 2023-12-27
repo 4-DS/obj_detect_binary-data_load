@@ -13,7 +13,7 @@ To retrain the model, a part of the COCO validation sample is used, which is a s
   <img src="imgs/Structura_CV_Pipeline.drawio.png" width="500"/>
   <div>&nbsp;</div>
   <div align="center">
-    <b><font size="3">Structure Binary CV-Pipeline</font></b>
+    <b><font size="3">High Concept Binary CV-Pipeline</font></b>
   </div>
   <div>&nbsp;</div>
 </div>
