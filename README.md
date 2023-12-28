@@ -66,11 +66,10 @@ A model in the Pytorch format (weights from the last epoch of learning and with 
 _____________________________________________
 ## **Model_pack**
 ### Component logic:
-At this stage of CV Pipeline Model_Pack the following happens:    
-1. Model conversion    
-- The model trained at the previous stage of the CV-Pipeline Model_Train is converted to a format corresponding to certain scenarios. For example, if the CV-Pipeline REST script is selected, the model can be converted to ONIX format, which provides the ability to deploy the model as a REST service. In the case of the Binary CV-Pipeline scenario, the model can be transmitted in the PyTorch format or another format in which it was trained.    
-2. Packaging in bertoservice    
-After converting the model, the model weights and all necessary artifacts (for example, the test image, the predicates of the test image) are packaged in bentoservice. Packaging in bentoservice allows you to create a containerized application that can be easily deployed and used for inference (prediction) on new data.    
+The CV Pipeline: model_pack component is responsible for packaging the model that was trained in the Model_train stage into BentoArchive. In this scenario, the trained model is passed on unchanged.    
+BentoArchive is an archive format that allows you to package a model and all its dependencies along with metadata and configuration. This makes it easy to transfer and deploy the model to other environments or devices.    
+When you pack a model using the CV Pipeline component: model_pack, all files needed to perform inference, including model weights, configuration files, and any other dependencies, are added to BentoArchive. This allows the completeness and integrity of the model to be preserved so that it can be used to perform inference in other scenarios or on other platforms.    
+Thus, the CV Pipeline: model_pack component plays an important role in the process of storing and transferring the trained model, ensuring that it is ready to be used "as is" in other environments or on other devices.
 ### Interface (input, output):
 - Input:
 Inference files (obtained from the previous step CV Pipeline - Model_Train)
