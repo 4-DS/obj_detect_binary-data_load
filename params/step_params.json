@@ -1,0 +1,22 @@
+{
+    "pipeline_params":
+    {
+        "env_name":"user",
+        "pipeline_name":"obj_detect_binary",
+        "zone_name":"test"
+    },
+    "step_params": {},
+    "substeps_params":
+    [
+        {
+            "substep_name":"data_load.ipynb",
+            "substep_params":
+            {
+                "coco_datasets_images_url": "http://images.cocodataset.org/zips/val2017.zip",                
+                "coco_datasets_annotations_url": "http://images.cocodataset.org/annotations/annotations_trainval2017.zip",
+                "yolox_pth_pretrain_weights": "https://download.openmmlab.com/mmdetection/v2.0/yolox/yolox_s_8x8_300e_coco/yolox_s_8x8_300e_coco_20211121_095711-4592a793.pth"
+            }
+        }
+    ]
+}
+
